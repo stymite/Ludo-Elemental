@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+
+# Expo & Web
+.expo/
+dist/
+dist-android/
+web-build/
+expo-env.d.ts
+
+# Large assets not used in build
+extra/
+v-game.png
+v-home.png
+v-setup.png
+
+# Docs & tooling
+*.md
+.vscode/
+.github/
+.claude/
+.agents/
+.brain/
+.playwright-mcp/
+supabase/.temp/
+
+# Native & backups
+*.bak
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro & Debug
+.metro-health-check*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# OS
+.DS_Store
+*.pem
+
+# Local env
+.env
+.env*.local
+!.env.example
+
+# Native folders
+/ios
+/android

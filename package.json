@@ -1,0 +1,48 @@
+{
+  "name": "ludo-game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@supabase/supabase-js": "^2.112.3",
+    "babel-preset-expo": "~57.0.0",
+    "expo": "~57.0.23",
+    "expo-auth-session": "~57.0.12",
+    "expo-crypto": "~57.0.3",
+    "expo-dev-client": "~57.0.19",
+    "expo-font": "~57.0.4",
+    "expo-image-picker": "~57.0.18",
+    "expo-network": "~57.0.2",
+    "expo-splash-screen": "~57.0.9",
+    "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.4",
+    "expo-web-browser": "~57.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-purchases": "^10.10.0",
+    "react-native-purchases-store-galaxy": "^10.10.0",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "0.10.1"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "check": "eslint . --no-warn-ignored && node scripts/check-imports.js && node scripts/check-worklets.js && node scripts/check-native-props.js && node engine-demo.js && node tutorial-demo.js && node online-demo.js && node shop-demo.js && node scripts/check-billing.cjs",
+    "check:database": "node scripts/check-online-db.cjs",
+    "check:live": "node scripts/check-live-online.cjs"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/react": "~19.2.4",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "~57.0.2",
+    "react-native-svg-transformer": "^1.5.3"
+  }
+}

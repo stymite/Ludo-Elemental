@@ -1,0 +1,96 @@
+{
+  "cli": {
+    "version": ">= 5.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "goog_cTsRYNYcrxjVjFpbUchctzUfIEv",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "false"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "goog_cTsRYNYcrxjVjFpbUchctzUfIEv",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "false"
+      }
+    },
+    "galaxy": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_STORE": "galaxy",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "PASTE_galaxy_KEY_HERE",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "false"
+      }
+    },
+    "judge": {
+      "distribution": "internal",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "test_mtWZWjLcYEfKLbhUOIZKuJBVKuj",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "true"
+      }
+    },
+    "judge-dev": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "test_mtWZWjLcYEfKLbhUOIZKuJBVKuj",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "true"
+      }
+    },
+    "judge-standalone": {
+      "distribution": "internal",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://zjfgqayfdmyvmjonregr.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_alZqKK8Ro3h6zqhqWYoakg_8hOdR1wT",
+        "EXPO_PUBLIC_REVENUECAT_API_KEY": "test_mtWZWjLcYEfKLbhUOIZKuJBVKuj",
+        "EXPO_PUBLIC_ALLOW_TEST_STORE": "true"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

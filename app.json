@@ -1,0 +1,91 @@
+{
+  "expo": {
+    "name": "Ludo Elemental",
+    "slug": "ludo-game",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#08080C",
+    "scheme": "ludo",
+    "icon": "./assets/logo.png",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stymite.ludoelemental"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#08080C"
+      },
+      "package": "com.stymite.ludoelemental",
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.CAMERA",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {},
+    "plugins": [
+      "expo-web-browser",
+      "./plugins/withAndroidSize.js",
+      "./plugins/withCrashNotice.js",
+      "./plugins/withDebugBundlesJs.js",
+      [
+        "expo-font",
+        {
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Aligarh",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/aligarh.otf",
+                    "weight": 400
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Becak",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/becak.otf",
+                    "weight": 400
+                  }
+                ]
+              },
+              {
+                "fontFamily": "Nunito-Bold",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/nunito.bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash_icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#08080C",
+          "dark": {
+            "image": "./assets/splash_icon.png",
+            "backgroundColor": "#08080C"
+          }
+        }
+      ]
+    ],
+    "owner": "adilahmadroll33",
+    "extra": {
+      "eas": {
+        "projectId": "a5fbb0b6-dc82-4443-bd05-3e34dabcd4f3"
+      }
+    }
+  }
+}

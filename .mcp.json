@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "expo": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "expo-mcp@latest"]
+    },
+    "playwright": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@playwright/mcp@latest"]
+    },
+    "context7": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@upstash/context7-mcp@latest"]
+    }
+  }
+}
