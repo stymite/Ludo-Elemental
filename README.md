@@ -105,8 +105,8 @@ Runs the linter, then three scanners and six suites:
 ## Run it yourself
 
 ```bash
-git clone https://github.com/stymite/Final-Ludo.git
-cd Final-Ludo
+git clone https://github.com/stymite/Ludo-Elemental.git
+cd Ludo-Elemental
 npm install
 cp .env.example .env     # optional: Supabase URL + anon key for online play
 npm start                # or: npm run web
@@ -118,7 +118,7 @@ Online play and purchases need the keys in `.env` / `eas.json`.
 
 ## Privacy
 
-[Privacy policy](https://stymite.github.io/Final-Ludo/privacy.html) · accounts,
+[Privacy policy](https://stymite.github.io/Ludo-Elemental/privacy.html) · accounts,
 game data and purchases are explained there, including how to delete an account
 from inside the app.
 

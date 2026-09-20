@@ -40,8 +40,8 @@ Copy from here into Google Play Console and Devpost. Generated images live in
     No ads. Play offline without an account.
 
 **Category:** Board · **Tags:** Board, Casual, Multiplayer
-**Privacy policy URL:** https://stymite.github.io/Final-Ludo/privacy.html
-**Account deletion URL:** https://stymite.github.io/Final-Ludo/privacy.html#delete
+**Privacy policy URL:** https://stymite.github.io/Ludo-Elemental/privacy.html
+**Account deletion URL:** https://stymite.github.io/Ludo-Elemental/privacy.html#delete
 **Target audience:** 13 and over (keeps the app out of the Families program)
 **Ads:** No
 
@@ -82,7 +82,7 @@ and neither Play (12 testers × 14 days) nor Galaxy Store (seller approval) can 
 done in time. Play and Galaxy carry on afterwards, for October.
 
 Next Gen needs: a demo video under 2 minutes, a **public open-source repo with a
-licence** (github.com/stymite/Final-Ludo, MIT), the text description below, the
+licence** (github.com/stymite/Ludo-Elemental, MIT), the text description below, the
 1024×1024 icon, and one 1179×2556 screenshot. Eligibility: enrolled student with
 a student email, 13+.
 

@@ -11,7 +11,7 @@ import { isSupabaseConfigured } from '../supabase';
 
 // Served by GitHub Pages from docs/privacy.html. Play needs the same URL on the
 // store listing, and its #delete section is the account deletion web link.
-const PRIVACY_URL = 'https://stymite.github.io/Final-Ludo/privacy.html';
+const PRIVACY_URL = 'https://stymite.github.io/Ludo-Elemental/privacy.html';
 
 const GoogleIcon = ({ size = 20, color }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24">
