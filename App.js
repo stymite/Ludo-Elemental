@@ -1362,7 +1362,14 @@ function AppInner({ onTutorial }) {
   // Live connectivity, so PLAY ONLINE dims the moment the signal drops rather
   // than only at launch. Polled rather than subscribed because expo-network's
   // listener is not available on every platform this runs on.
+  // Only home and settings ever show this, and only home gates a tap on it, so
+  // that is where it is polled. It used to poll for the life of the process:
+  // during a game that was a native-module round trip every four seconds, and a
+  // setState that re-ran this whole component, to refresh a value no on-screen
+  // pixel could depend on. Navigating back re-runs the effect, whose first act
+  // is an immediate read, so the flag is never stale where it is read.
   useEffect(() => {
+    if (appState !== 'HOME' && appState !== 'SETTINGS') return;
     let alive = true;
     const read = async () => {
       try {
@@ -1375,7 +1382,7 @@ function AppInner({ onTutorial }) {
     read();
     const id = setInterval(read, 4000);
     return () => { alive = false; clearInterval(id); };
-  }, []);
+  }, [appState]);
 
   // Offer to rejoin whatever game this device dropped out of.
   useEffect(() => {
