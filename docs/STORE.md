@@ -50,14 +50,15 @@ Copy from here into Google Play Console and Devpost. Generated images live in
 | Product ID | Name | Price |
 | --- | --- | --- |
 | `ludo_board_anime` | Anime Dream Board | 2.99 USD |
-| `ludo_board_astra` | Astral Cosmos Board | 2.99 USD |
+| ~~`ludo_board_astra`~~ | Astral Cosmos Board | — *pulled from sale, see `shop.js`; skip it in Play until the board is fixed and un-commented* |
 | `ludo_board_future` | Cyber Neon Board | 2.99 USD |
 | `ludo_board_gear` | Steampunk Clockwork Board | 2.99 USD |
 | `ludo_board_spirit` | Mystic Blossom Board | 2.99 USD |
 | `ludo_board_sport` | Arena Champions Board | 2.99 USD |
 
-The IDs must match `shop.js` exactly. In RevenueCat, import them and set each
-to **Non-consumable**.
+The IDs must match `shop.js` exactly — five boards are on sale today, since
+Astral Cosmos is commented out of the catalogue. In RevenueCat, import them and
+set each to **Non-consumable**.
 
 ### Data safety answers
 
@@ -103,7 +104,7 @@ The shop sells premium game boards as one-time, non-consumable Google Play produ
 - Ownership comes only from RevenueCat's `CustomerInfo`, never from local storage, so unlocks cannot be faked
 - Prices are fetched from the store and shown in the player's own currency
 - Purchases are tied to the player's account with `Purchases.logIn`, so a board bought on one phone is there on the next; Restore brings everything back after a reinstall
-- An item is owned if its product was bought *or* an entitlement of the same name is active, so a bundle can be launched from the RevenueCat dashboard with no app update
+- Ownership is an active entitlement named after the board, never raw purchase history — so a refund takes the board back, and a bundle product can unlock several boards straight from the RevenueCat dashboard with no app update
 - Everything sold is cosmetic. Nothing is pay-to-win, and there are no ads
 
 **How we built it**
@@ -152,6 +153,90 @@ No copyrighted music. Upload to YouTube as Public or Unlisted-public.
 - The package name `com.stymite.ludoelemental` is fixed forever once uploaded.
 - RevenueCat needs a Google Play service account JSON from that same Play
   account (RevenueCat → Project settings → Google Play → Service account).
+
+---
+
+## Releasing on Google Play
+
+Order matters. Products cannot be created before a build is uploaded, and the
+purchase path cannot be proven until both exist.
+
+### 1. Build the AAB
+
+    eas build -p android --profile production
+
+That profile is already correct: app bundle, the `goog_` key, and
+`EXPO_PUBLIC_ALLOW_TEST_STORE=false`. Never upload a build made with a
+`judge*` profile — those carry a Test Store key, and RevenueCat force-closes
+any signed build that uses one.
+
+The AAB matters for size: the APK is ~33 MB because it carries both ARM ABIs,
+and Play splits an AAB per device, so a phone downloads roughly 24 MB of it.
+
+### 2. Internal testing, before anything else
+
+Play Console → Test and release → Testing → **Internal testing** → create a
+release and upload the AAB. Internal testing is instant, takes no review, and
+is what unlocks product creation.
+
+### 3. Create the six products
+
+Monetize with Play → Products → In-app products. IDs exactly as in the table
+above, $2.99 each, **Activate** each one.
+
+### 4. Wire RevenueCat to Play
+
+1. Play Console → Setup → API access → link a Google Cloud project, create a
+   service account, download its JSON key.
+2. Play Console → Users and permissions → invite that service account with:
+   View app information, View financial data, Manage orders and subscriptions,
+   Manage store presence.
+3. RevenueCat → Project settings → Google Play App Settings → upload that JSON.
+4. RevenueCat → Products → import the six Play products, each set
+   **Non-consumable** (otherwise a board can be bought twice).
+5. RevenueCat → Entitlements → attach **the Play product** to the entitlement of
+   the same name. The Test Store product being attached is not enough.
+
+Step 5 is the one that silently costs money if it is skipped: the charge goes
+through, no entitlement is granted, and the board stays locked. `shop.js`
+grants a board only for an active entitlement whose id matches the board — by
+design, so a refund takes the board back.
+
+Google can take up to 36 hours to accept new service account credentials.
+
+### 5. Prove the money path before anyone pays
+
+Play Console → Setup → **License testing** → add a tester's Google account.
+Licence testers are charged nothing and can complete the real Play purchase
+flow. On a device signed in as that tester, installed from the internal
+testing track:
+
+- Buy a board → it unlocks and equips.
+- Force-stop, reopen → still owned (entitlement, not local state).
+- Shop header → **Restore** → still owned.
+
+If the buy succeeds but the board stays locked, the app now says so rather
+than swallowing it ("Payment received, but the board is not unlocked yet") —
+that message means step 4.5 above is not done.
+
+### 6. Closed testing, then production
+
+A personal Play account created after Nov 13, 2023 must run a closed test with
+12 testers opted in for 14 continuous days before it can apply for production
+access. Start that clock the day the first build uploads; nothing else in this
+list depends on it.
+
+### Store listing assets
+
+| Asset | File | Note |
+| --- | --- | --- |
+| Icon | `store-assets/icon-1024.png` | 512×512 also accepted |
+| Feature graphic | `store-assets/feature-graphic-1024x500.png` | required |
+| Phone screenshots | `store-assets/play-*.png` | 1080×1920 |
+
+Use the **`play-*`** screenshots on Play, not the `screenshot-*` ones: Play
+rejects a phone screenshot whose long side is more than twice its short side,
+and those are 1179×2556 (2.17:1). The `screenshot-*` set is for Devpost.
 
 ### Checklist (Next Gen)
 
