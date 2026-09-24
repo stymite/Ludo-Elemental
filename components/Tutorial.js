@@ -216,7 +216,7 @@ export default function Tutorial({ onClose }) {
   const isVeryCompact = height < 680;
 
   const isSummaryActive = summaryVisible && readyForSummary;
-  const overhead = isVeryCompact ? 255 : isCompact ? 285 : 310;
+  const overhead = isVeryCompact ? 280 : isCompact ? 310 : 335;
   const maxAvailableBoardH = Math.max(160, height - insets.top - insets.bottom - overhead);
   const maxBoardDim = isVeryCompact ? 245 : isCompact ? 270 : 300;
   const boardSize = Math.max(160, Math.min(width - 32, maxAvailableBoardH, maxBoardDim));
@@ -310,7 +310,7 @@ export default function Tutorial({ onClose }) {
           ) : null}
         </View>
 
-        <View style={s.stage}>
+        <View style={s.stage} pointerEvents="box-none">
           <View style={[
             s.boardContainer,
             { width: boardSize, height: boardSize },
@@ -491,8 +491,8 @@ const s = StyleSheet.create({
     maxWidth: 500,
     alignSelf: 'center',
     overflow: 'visible',
-    zIndex: 10,
-    elevation: 10,
+    zIndex: 500,
+    elevation: 500,
   },
   stageSummary: {
     justifyContent: 'space-evenly',
@@ -514,8 +514,8 @@ const s = StyleSheet.create({
     top: -72,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 50,
-    elevation: 50,
+    zIndex: 99999,
+    elevation: 99999,
     overflow: 'visible',
   },
   bottomDiceSlot: {
@@ -525,12 +525,12 @@ const s = StyleSheet.create({
     marginVertical: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 30,
-    elevation: 30,
+    zIndex: 99999,
+    elevation: 99999,
     overflow: 'visible',
   },
-  diceStage: { width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 100, elevation: 100 },
-  diceSeatRow: { flexDirection: 'row', overflow: 'visible', zIndex: 100, elevation: 100 },
+  diceStage: { width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 99999, elevation: 99999 },
+  diceSeatRow: { flexDirection: 'row', overflow: 'visible', zIndex: 99999, elevation: 99999 },
   boardVeil: { ...StyleSheet.absoluteFill, zIndex: 15, backgroundColor: 'rgba(0,0,0,0.55)', borderRadius: 12 },
   baseRow: { flexDirection: 'row', gap: 6, alignItems: 'center', marginTop: 2, marginBottom: 0 },
   baseArt: { width: 38, height: 26, borderRadius: 5 },
@@ -545,12 +545,14 @@ const s = StyleSheet.create({
     borderTopWidth: 1,
     borderColor: COLORS.line,
     alignItems: 'center',
-    zIndex: 200,
-    elevation: 200,
+    zIndex: 50,
+    elevation: 50,
   },
   footerOverSummary: {
     borderTopWidth: 0,
     backgroundColor: 'transparent',
+    zIndex: 600,
+    elevation: 600,
   },
   stepIndicator: { ...TYPE.caption, color: COLORS.textMid, textAlign: 'center', letterSpacing: 2, marginBottom: 6, fontSize: 12, fontWeight: '600' },
   disabled: { opacity: 0.28 },

@@ -390,7 +390,7 @@ export const PowerButton = ({
         </TouchableOpacity>
       </Animated.View>
 
-      {/* Floating READY Banner: highest z-index, tilted -22°, perfectly centered */}
+      {/* Floating READY Banner: highest z-index, tilted -12° (straighter), perfectly centered */}
       {ready && (
         <Animated.View
           style={[
@@ -412,7 +412,7 @@ export const PowerButton = ({
               strokeLinejoin="round"
               strokeLinecap="round"
               textAnchor="middle"
-              transform={`rotate(-22, ${c}, ${c})`}
+              transform={`rotate(-12, ${c}, ${c})`}
             >
               READY
             </SvgText>
@@ -424,7 +424,7 @@ export const PowerButton = ({
               fontFamily={READY_FONT}
               fill="#FFFFFF"
               textAnchor="middle"
-              transform={`rotate(-22, ${c}, ${c})`}
+              transform={`rotate(-12, ${c}, ${c})`}
             >
               READY
             </SvgText>
