@@ -11,6 +11,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle, Defs, LinearGradient, Stop, Ellipse, Line } from 'react-native-svg';
 import { NO_REDUCE, timing } from '../motion';
+import { TARGET } from '../theme';
 import IceShield from './IceShield';
 import BouncingArrow from './BouncingArrow';
 import TutorialTooltip from './TutorialTooltip';
@@ -277,6 +278,16 @@ const Token = memo(({
   const pieceIndex = parseInt(id.split('_')[1]);
   const currentCoords = getTileCoords(player, position, pieceIndex, goalIndex, totalGoaled);
 
+  // The coin is drawn at 6.6% of the board — about 22pt on a phone, half the
+  // 44pt a fingertip can reliably land on, so moving a piece wanted a precise
+  // tap. The touch box is grown to that 44pt minimum while the coin keeps its
+  // size: the container is what Android clips touches to, so hitSlop on the
+  // button inside it would have been thrown away. The extra comes off left and
+  // top as well, to keep the coin drawn exactly where it was.
+  const coinPx = (TOKEN_SIZE_PCT / 100) * boardSize;
+  const touchPad = Math.max(0, (TARGET.min - coinPx) / 2);
+  const touchPx = coinPx + touchPad * 2;
+
   const left = useSharedValue(currentCoords.left);
   const top = useSharedValue(currentCoords.top);
   const glowOpacity = useSharedValue(0);
@@ -431,8 +442,8 @@ const Token = memo(({
     }
 
     return {
-      left: (left.value / 100) * boardSize,
-      top: (top.value / 100) * boardSize,
+      left: (left.value / 100) * boardSize - touchPad,
+      top: (top.value / 100) * boardSize - touchPad,
       transform: transform.length > 0 ? transform : undefined
     };
   });
@@ -461,6 +472,7 @@ const Token = memo(({
       pointerEvents={eligible ? 'auto' : 'none'}
       style={[
         styles.tokenContainer,
+        { width: touchPx, height: touchPx },
         { zIndex: position === 56 ? 100 : ((eligible ? 30 : 10) + stackIndex) },
         dimmed ? styles.tokenDimmed : null,
         animatedStyle
@@ -469,7 +481,7 @@ const Token = memo(({
       {hasPointer && (
         <BouncingArrow
           color={theme.glow || '#FFB300'}
-          style={styles.tokenPointerTop}
+          style={[styles.tokenPointerTop, { top: -44 + touchPad }]}
         />
       )}
       <TouchableOpacity
@@ -481,6 +493,7 @@ const Token = memo(({
         accessibilityLabel={`Move ${player.toLowerCase()} token`}
         accessibilityState={{ disabled: !eligible }}
       >
+        <View style={{ width: coinPx, height: coinPx, alignItems: 'center', justifyContent: 'center' }}>
 
         {eligible && (
           <Animated.View
@@ -539,6 +552,7 @@ const Token = memo(({
         <CoinMedallion player={player} fireUsed={fireUsed} gustUsed={gustUsed} />
 
         {shielded && <IceShield />}
+        </View>
       </TouchableOpacity>
     </Animated.View>
   );
@@ -672,7 +686,7 @@ const Tokens = ({
   Object.keys(goaledPieces).forEach(p => goaledPieces[p].sort());
 
   return (
-    <View style={[StyleSheet.absoluteFill, { zIndex: 20, elevation: 20 }]} pointerEvents="box-none">
+    <View style={[StyleSheet.absoluteFill, { zIndex: 99999, elevation: 99999 }]} pointerEvents="box-none">
       {pieces.map((piece) => {
         const isEligible = eligiblePieces.includes(piece.id);
 
@@ -766,8 +780,9 @@ const Tokens = ({
               top: tokenBottom + 4,
               left: tooltipLeft,
               width: tooltipW,
-              zIndex: 99999,
-              elevation: 99999,
+              zIndex: 999999,
+              elevation: 999999,
+              opacity: 1,
             }}
           >
             <TutorialTooltip

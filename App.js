@@ -154,6 +154,11 @@ function useStable(fn) {
 // when the value is identical, so this is the difference between a roll costing
 // one re-render and costing two.
 const NO_PIECES = [];
+
+// Grid, menu, undo and redo draw a few points under the 44 a fingertip needs.
+// Slop rather than size: these sit in rows with room around them, so the touch
+// area can grow without moving anything on screen.
+const TAP_SLOP = { top: 8, bottom: 8, left: 8, right: 8 };
 const NO_ROLLS = [];
 
 function AppInner({ onTutorial }) {
@@ -1720,6 +1725,7 @@ function AppInner({ onTutorial }) {
         </View>
         <View style={styles.headerButtons}>
           <TouchableOpacity
+            hitSlop={TAP_SLOP}
             style={[styles.iconHeaderBtn, showGrid && styles.iconHeaderBtnActive]}
             onPress={() => setShowGrid(prev => !prev)}
             accessibilityRole="button"
@@ -1732,6 +1738,7 @@ function AppInner({ onTutorial }) {
             />
           </TouchableOpacity>
           <TouchableOpacity
+            hitSlop={TAP_SLOP}
             style={styles.iconHeaderBtn}
             onPress={() => setIsMenuVisible(true)}
             accessibilityRole="button"
@@ -1822,6 +1829,7 @@ function AppInner({ onTutorial }) {
       {gameMode === 'PASS_N_PLAY' && (
         <View style={styles.bottomBar}>
           <TouchableOpacity
+            hitSlop={TAP_SLOP}
             style={[styles.bottomHistoryBtn, !canUndo && styles.bottomHistoryBtnDisabled]}
             disabled={!canUndo}
             onPress={handleUndo}
@@ -1845,6 +1853,7 @@ function AppInner({ onTutorial }) {
           </TouchableOpacity>
 
           <TouchableOpacity
+            hitSlop={TAP_SLOP}
             style={[styles.bottomHistoryBtn, !canRedo && styles.bottomHistoryBtnDisabled]}
             disabled={!canRedo}
             onPress={handleRedo}

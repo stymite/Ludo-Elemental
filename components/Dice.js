@@ -15,6 +15,7 @@ import Svg, { Rect, Path } from 'react-native-svg';
 // single 20px glyph that Ionicons already has.
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { NO_REDUCE, timing } from '../motion';
+import { TARGET } from '../theme';
 import { PowerRing, ChargeReadout, PowerButton, PowerBadge } from './ElementPower';
 import BouncingArrow from './BouncingArrow';
 import TutorialTooltip from './TutorialTooltip';
@@ -436,6 +437,7 @@ const Dice = ({
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={handlePress}
+              style={styles.diceTouchable}
               disabled={!!disabled || !isActive}
               accessibilityRole="button"
               accessibilityLabel={accessibilityLabel || `${player.toLowerCase()} dice`}
@@ -561,6 +563,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 2,
     overflow: 'visible',
+    zIndex: 99999,
+    elevation: 99999,
   },
   controlsRow: {
     flexDirection: 'row',
@@ -569,6 +573,8 @@ const styles = StyleSheet.create({
     gap: 8,
     position: 'relative',
     overflow: 'visible',
+    zIndex: 99999,
+    elevation: 99999,
   },
   bankAbsoluteLeft: {
     position: 'absolute',
@@ -652,10 +658,11 @@ const styles = StyleSheet.create({
   },
   tutorialTooltipPos: {
     position: 'absolute',
-    top: 60,
+    top: 54,
     width: 215,
-    zIndex: 99999,
-    elevation: 99999,
+    zIndex: 999999,
+    elevation: 999999,
+    opacity: 1,
   },
   tutorialTooltipLeft: {
     left: 0,
@@ -683,6 +690,14 @@ const styles = StyleSheet.create({
   diceImage: {
     width: '100%',
     height: '100%',
+  },
+  // The die is DICE_SIZE; this ring of padding is what takes the button that
+  // wraps it up to the 44pt a fingertip can land on. The die is the control
+  // pressed most often in the game, and it was the smallest thing on screen.
+  diceTouchable: {
+    padding: Math.max(0, Math.ceil((TARGET.min - DICE_SIZE) / 2)),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   diceFace: {
     width: DICE_SIZE,
