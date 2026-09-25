@@ -31,6 +31,7 @@
       "./plugins/withAndroidSize.js",
       "./plugins/withCrashNotice.js",
       "./plugins/withDebugBundlesJs.js",
+      "./plugins/withUploadSigning.js",
       [
         "expo-font",
         {
