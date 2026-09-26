@@ -562,6 +562,12 @@ const Token = memo(({
 // than one of the banked values — with a single option there is nothing to ask,
 // so the tap just moves it. Sits above the token in the parent rather than
 // inside it, so the token's own pulse/hop transforms don't drag it around.
+// Where every token on a board is drawn, in zIndex and elevation both. Anything
+// that has to sit over the tokens — the tutorial's dice box and its tooltip —
+// must be strictly above this, not equal to it: equal values fall back to draw
+// order, and the tokens are drawn last.
+export const TOKENS_LAYER = 99999;
+
 const TOKEN_SIZE_PCT = 6.6;
 
 const ValueChooser = ({ piece, values, boardSize, onChoose, onCancel, gustActive = false }) => {
@@ -686,7 +692,7 @@ const Tokens = ({
   Object.keys(goaledPieces).forEach(p => goaledPieces[p].sort());
 
   return (
-    <View style={[StyleSheet.absoluteFill, { zIndex: 99999, elevation: 99999 }]} pointerEvents="box-none">
+    <View style={[StyleSheet.absoluteFill, { zIndex: TOKENS_LAYER, elevation: TOKENS_LAYER }]} pointerEvents="box-none">
       {pieces.map((piece) => {
         const isEligible = eligiblePieces.includes(piece.id);
 

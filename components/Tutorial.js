@@ -5,7 +5,7 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing, runOnJS
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Dice from './Dice';
 import LudoBoard from './LudoBoard';
-import Tokens, { travelMs } from './Tokens';
+import Tokens, { travelMs, TOKENS_LAYER } from './Tokens';
 import { WallMarker } from './Wall';
 import StymiteFace from './StymiteFace';
 import { LESSONS, createLesson, advanceLesson } from '../tutorial';
@@ -322,12 +322,6 @@ export default function Tutorial({ onClose }) {
             // move while you are being taught on it.
             { marginTop: isVeryCompact ? 76 : isCompact ? 84 : 90 }
           ]}>
-            {isDiceTop ? (
-              <View style={[s.topDiceContainer, { width: boardSize }]}>
-                {dice}
-              </View>
-            ) : null}
-
             <View key={`${lesson.id}-${boardRevision}`} style={[
               s.board, { width: boardSize, height: boardSize },
               focus === 'token' ? s.focused : null
@@ -344,6 +338,13 @@ export default function Tutorial({ onClose }) {
                 dimOtherTokens={false}
                 tokenTooltip={token && !moving && !scoringAnimation ? { result: resultMessage, action: actionText } : null} />
             </View>
+
+            {/* After the board on purpose — see DICE_LAYER. */}
+            {isDiceTop ? (
+              <View style={[s.topDiceContainer, { width: boardSize }]}>
+                {dice}
+              </View>
+            ) : null}
           </View>
 
           <View style={[s.bottomDiceSlot, { width: boardSize }]}>
@@ -418,6 +419,13 @@ export default function Tutorial({ onClose }) {
     </Modal>
   );
 }
+
+// The dice box carries the "Power is ready!" tooltip, which hangs down over the
+// board and its tokens. It used to be 99999, exactly the tokens' own layer, and
+// on Android an exact tie is settled by draw order — tokens last — so a token
+// showed straight through the tooltip text. Derived from the tokens' layer so
+// the two can never be made equal again by editing one number.
+const DICE_LAYER = TOKENS_LAYER + 1;
 
 const s = StyleSheet.create({
   root: { flex: 1, backgroundColor: COLORS.bg, overflow: 'hidden' },
@@ -514,8 +522,8 @@ const s = StyleSheet.create({
     top: -72,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 99999,
-    elevation: 99999,
+    zIndex: DICE_LAYER,
+    elevation: DICE_LAYER,
     overflow: 'visible',
   },
   bottomDiceSlot: {
@@ -525,8 +533,8 @@ const s = StyleSheet.create({
     marginVertical: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 99999,
-    elevation: 99999,
+    zIndex: DICE_LAYER,
+    elevation: DICE_LAYER,
     overflow: 'visible',
   },
   diceStage: { width: '100%', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 99999, elevation: 99999 },
