@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, TextInput, Image, Linking } from 'react-native';
+import { View, Text, StyleSheet, Pressable, TextInput, Image, Linking, Platform } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Path } from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,6 +12,20 @@ import { isSupabaseConfigured } from '../supabase';
 // Served by GitHub Pages from docs/privacy.html. Play needs the same URL on the
 // store listing, and its #delete section is the account deletion web link.
 const PRIVACY_URL = 'https://stymite.github.io/Ludo-Elemental/privacy.html';
+
+// The Play listing for this package (keep in step with android.package in
+// app.json). market:// opens the Play Store app on the page where the rating is
+// left; the https form is what a phone without Play, or the web build, can
+// still open. A plain link on purpose: expo-store-review would be a new native
+// module, and every one of those is a launch risk on every phone.
+const PLAY_ID = 'com.stymite.ludoelemental';
+const PLAY_WEB_URL = `https://play.google.com/store/apps/details?id=${PLAY_ID}`;
+const rateApp = () => {
+  if (Platform.OS !== 'android') return Linking.openURL(PLAY_WEB_URL).catch(() => { });
+  return Linking.openURL(`market://details?id=${PLAY_ID}`)
+    .catch(() => Linking.openURL(PLAY_WEB_URL))
+    .catch(() => { });
+};
 
 const GoogleIcon = ({ size = 20, color }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24">
@@ -305,6 +319,14 @@ const SettingsScreen = ({
             <ContactForm username={username} />
           </View>
         )}
+        <Divider />
+        <LinkRow
+          label="Rate Ludo Elemental"
+          icon="star-outline"
+          chevron="open-outline"
+          hint="Opens Google Play"
+          onPress={rateApp}
+        />
         <Divider />
         <LinkRow
           label="Privacy policy"
