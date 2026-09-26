@@ -549,7 +549,8 @@ const s = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.6,
     shadowRadius: 10,
-    elevation: 15,
+    // No elevation: dark rectangle under a see-through fill on Android. Stacking
+    // above the dim is tutorialWrapper's job (elevation 30), not this card's.
   },
   storeAnchor: {
     position: 'absolute',

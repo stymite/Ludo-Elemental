@@ -372,7 +372,7 @@ const s = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 6,
-    elevation: 3,
+    // No elevation: on Android it draws a dark rectangle under a see-through fill (0.08 alpha fill).
   },
   headerTitle: { ...TYPE.title, color: COLORS.textHi, flex: 1, textAlign: 'center' },
 

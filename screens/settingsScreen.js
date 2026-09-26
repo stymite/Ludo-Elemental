@@ -264,7 +264,7 @@ const SettingsScreen = ({
 
       <SectionLabel>ABOUT</SectionLabel>
       <Card>
-        <InfoRow label="Version" value="v1.0.0.420.69" />
+        <InfoRow label="Version" value="v1.0.0" />
         <Divider />
         <LinkRow
           label="How the powers work"
@@ -311,7 +311,7 @@ const SettingsScreen = ({
           icon="shield-checkmark-outline"
           chevron="open-outline"
           hint="Opens in your browser"
-          onPress={() => Linking.openURL(PRIVACY_URL).catch(() => {})}
+          onPress={() => Linking.openURL(PRIVACY_URL).catch(() => { })}
         />
       </Card>
 
@@ -492,7 +492,7 @@ const s = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.45,
     shadowRadius: 10,
-    elevation: 4,
+    // No elevation: on Android it draws a dark rectangle under a see-through fill (rgba fill).
   },
   useAnotherAccountText: {
     fontFamily: 'Nunito-Bold',

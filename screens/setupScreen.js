@@ -268,7 +268,18 @@ const SetupScreen = ({ seats, formation, onSetSeat, onFormation, onStart, onBack
             </Rise>
           ) : null}
 
-          {problem ? <Text style={s.problem}>{problem}</Text> : null}
+          {/* Always rendered, with a non-breaking space when there is nothing to
+              say. The footer sits in the layout flow and the board is centred in
+              whatever height is left above it, so a line that only existed while
+              there was a problem made the footer ~26px taller, and the board slid
+              up and down as seats were toggled. The slot is the same height either
+              way, so the board stays put. */}
+          <Text
+            style={s.problem}
+            importantForAccessibility={problem ? 'auto' : 'no-hide-descendants'}
+          >
+            {problem || '\u00A0'}
+          </Text>
 
           <View style={s.footerRow}>
             <Pressable

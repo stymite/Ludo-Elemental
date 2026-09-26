@@ -90,7 +90,7 @@ const SymbolShopItem = ({ item, owned, equipped, price, busy, onBuy, onEquip, de
             shadowOffset: { width: 0, height: 0 },
             shadowOpacity: 0.35,
             shadowRadius: 10,
-            elevation: 4
+            // No elevation: on Android it draws a dark rectangle under a see-through fill (rgba fill).
           },
           pressed && !busy && { transform: [{ scale: 0.98 }] },
           busy && { opacity: 0.6 }
@@ -231,7 +231,7 @@ const TokenShopItem = ({ item, owned, equipped, price, busy, onBuy, onEquip, del
             shadowOffset: { width: 0, height: 0 },
             shadowOpacity: 0.35,
             shadowRadius: 10,
-            elevation: 4
+            // No elevation: on Android it draws a dark rectangle under a see-through fill (rgba fill).
           },
           pressed && !busy && { transform: [{ scale: 0.98 }] },
           busy && { opacity: 0.6 }
@@ -296,7 +296,7 @@ const ShopItem = ({ item, owned, equipped, price, busy, onBuy, onEquip, delay })
             shadowOffset: { width: 0, height: 0 },
             shadowOpacity: 0.35,
             shadowRadius: 10,
-            elevation: 4
+            // No elevation: on Android it draws a dark rectangle under a see-through fill (rgba fill).
           },
           pressed && !busy && { transform: [{ scale: 0.98 }] },
           busy && { opacity: 0.6 }
