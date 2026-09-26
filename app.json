@@ -23,7 +23,8 @@
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.CAMERA",
         "android.permission.WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "versionCode": 2
     },
     "web": {},
     "plugins": [
