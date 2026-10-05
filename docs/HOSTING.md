@@ -4,11 +4,16 @@ The static website lives in `docs/`: homepage, privacy policy, account deletion
 instructions, and `app-ads.txt`. `firebase.json` publishes that directory through
 Firebase Hosting without publishing Markdown documents or hidden files.
 
-GitHub Pages is configured for `main:/docs`, but this account's user site has
-`stymite.me` as its custom domain. The project inherits that domain. Its project
-subpath also does not provide the hostname-root `app-ads.txt` AdMob crawls.
-Use a dedicated Firebase Hosting site with its free HTTPS `web.app` hostname.
-No paid domain is required, and no personal website configuration needs changing.
+GitHub Pages is configured for `main:/docs`. On October 6, 2026, the obsolete
+`stymite.me` CNAME and custom-domain binding were removed from the account's
+`stymite.github.io` Pages repository to restore the original submitted policy URL:
+https://stymite.github.io/Ludo-Elemental/privacy.html
+The personal domain's DNS and Vercel hosting were not changed.
+
+The policy stays available on both GitHub Pages and Firebase. Keep using the
+dedicated Firebase homepage for the Play developer website: a GitHub project
+subpath does not supply the hostname-root `app-ads.txt` AdMob crawls.
+No paid domain is required.
 
 ## Deployed site
 
