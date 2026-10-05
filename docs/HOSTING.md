@@ -10,12 +10,21 @@ subpath also does not provide the hostname-root `app-ads.txt` AdMob crawls.
 Use a dedicated Firebase Hosting site with its free HTTPS `web.app` hostname.
 No paid domain is required, and no personal website configuration needs changing.
 
-## First deployment
+## Deployed site
+
+Firebase project: `ludo-elemental-stymite` (created October 6, 2026).
+
+- Website: https://ludo-elemental-stymite.web.app/
+- Privacy policy: https://ludo-elemental-stymite.web.app/privacy.html
+- Account deletion: https://ludo-elemental-stymite.web.app/privacy.html#delete
+- Seller file: https://ludo-elemental-stymite.web.app/app-ads.txt
+
+The default project is saved in `.firebaserc`. No billing account was linked.
+
+## Deploy updates
 
 ```sh
-firebase login --reauth
-firebase projects:create <unique-ludo-project-id> --display-name "Ludo Elemental"
-firebase deploy --only hosting --project <unique-ludo-project-id>
+firebase deploy --only hosting --project ludo-elemental-stymite
 ```
 
 After deployment, confirm these return HTTP 200 on the actual hosting hostname:
@@ -31,4 +40,5 @@ Then request app-ads.txt verification in AdMob after it can discover the website
 through the store listing. Do not submit an unverified or placeholder hostname.
 
 For later updates, commit changes to this repository and run the deployment
-command again with the same project ID. Keep both copies of `app-ads.txt` identical.
+command again. If authentication expires, run `firebase login --reauth` first.
+Keep both copies of `app-ads.txt` identical.

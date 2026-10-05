@@ -118,7 +118,7 @@ Online play and purchases need the keys in `.env` / `eas.json`.
 
 ## Privacy
 
-[Privacy policy](https://stymite.github.io/Ludo-Elemental/privacy.html) · accounts,
+[Privacy policy](https://ludo-elemental-stymite.web.app/privacy.html) · accounts,
 game data and purchases are explained there, including how to delete an account
 from inside the app.
 

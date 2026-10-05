@@ -40,8 +40,9 @@ Copy from here into Google Play Console and Devpost. Generated images live in
     No ads. Play offline without an account.
 
 **Category:** Board · **Tags:** Board, Casual, Multiplayer
-**Privacy policy URL:** https://stymite.github.io/Ludo-Elemental/privacy.html
-**Account deletion URL:** https://stymite.github.io/Ludo-Elemental/privacy.html#delete
+**Developer website URL:** https://ludo-elemental-stymite.web.app/
+**Privacy policy URL:** https://ludo-elemental-stymite.web.app/privacy.html
+**Account deletion URL:** https://ludo-elemental-stymite.web.app/privacy.html#delete
 **Target audience:** 13 and over (keeps the app out of the Families program)
 **Ads:** No
 
@@ -243,7 +244,7 @@ and those are 1179×2556 (2.17:1). The `screenshot-*` set is for Devpost.
 - [x] Public repo, open source, MIT `LICENSE` visible
 - [x] README explaining the game, the RevenueCat integration and the architecture
 - [x] `supabase-schema-v2.sql` applied and tested (grants, account deletion, hardening)
-- [x] GitHub Pages on, privacy page loads
+- [x] Dedicated Firebase Hosting website with privacy policy and root app-ads.txt
 - [ ] RevenueCat Test Store key in `eas.json`, judge APK built
 - [ ] Video on YouTube, under 2 minutes, recorded on a phone
 - [ ] Devpost: description, icon, screenshot, repo link, video link, student email
